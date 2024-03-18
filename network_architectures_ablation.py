@@ -90,28 +90,3 @@ for epoch in range(n_epochs):
 df = pd.DataFrame(loss_list, columns=['Loss'])
 df.to_csv(logs_fpath, index=False)
 
-
-
-# # %%
-# exp_code = 'unet_32x64x128x256x512x1024'
-# save_dir = '/home/sahamed/Projects/pytomography/scatter-estimation-deep-image-prior/network_ablation_experiments'
-# models_dir = os.path.join(save_dir, 'models', f'{exp_code}')
-# preds_dir = os.path.join(save_dir, 'predictions', f'{exp_code}')
-# os.makedirs(preds_dir, exist_ok=True)
-# model_fpath = os.path.join(models_dir, 'checkpoint=10.pth')
-# pred_fpath = os.path.join(preds_dir, 'pred.pt')
-
-# #%%
-# num_channels = [int(i) for i in exp_code.split('_')[1].split('x')]
-# print(num_channels)
-# unet = UNetCustom(n_channels=num_channels)
-# unet.load_state_dict(torch.load(model_fpath))
-# unet.eval()
-# truth = scatter[0].unsqueeze(1)
-# torch.manual_seed(42)
-# input = torch.randn(truth.shape)
-
-# scatter_pred = unet(input)
-# scatter_pred = scatter_pred.swapaxes(1,0)
-# torch.save(scatter_pred, pred_fpath)
-# # %%
