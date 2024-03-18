@@ -52,7 +52,7 @@ def get_final_block(in_channels):
             nn.LeakyReLU(),
             nn.Conv2d(in_channels, 1, kernel_size=3, padding='same'),
         )
-#%%
+
 class UNetCustom(nn.Module):
     def __init__(self, n_channels=[2, 4, 8, 16, 32]):
         super().__init__()       
@@ -93,5 +93,3 @@ class UNetCustom(nn.Module):
             x = self.upward_blocks[i](x)
 
         return x
-
-# %%
