@@ -62,7 +62,7 @@ class UNetCustom(nn.Module):
         self.first_block = get_downward_block(1, n_channels[0])
         self.downward_blocks = nn.ModuleList([get_downward_block(n_channels[i], n_channels[i+1]) for i in range(self.num_layers-1)])
         self.downward_blocks = nn.ModuleList([self.first_block] + list(self.downward_blocks))
-
+        del self.first_block
         # list of downsample blocks
         self.downsample_blocks = nn.ModuleList([get_downsample_block(n_channels[i]) for i in range(self.num_layers)])
 
@@ -76,7 +76,7 @@ class UNetCustom(nn.Module):
         self.upward_blocks = nn.ModuleList([get_upward_block(n_channels[self.num_layers-i-1]) for i in range(self.num_layers-1)])
         self.final_block = get_final_block(n_channels[0])
         self.upward_blocks = nn.ModuleList(list(self.upward_blocks) + [self.final_block])
-    
+        del self.final_block
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         down_outputs = []
@@ -93,3 +93,5 @@ class UNetCustom(nn.Module):
             x = self.upward_blocks[i](x)
 
         return x
+
+# %%
