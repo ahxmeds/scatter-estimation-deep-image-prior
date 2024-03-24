@@ -1,0 +1,8 @@
+{'bkg': 1,
+ 'liver': 2,
+ 'l_lung': 3,
+ 'r_lung': 4,
+ 'l_kidney': 5,
+ 'r_kidney': 6,
+ 'salivary': 7,
+ 'bladder': 8}
